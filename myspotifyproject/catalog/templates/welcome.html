@@ -3,16 +3,25 @@
 
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link
+            rel="stylesheet"
+            type = "text/css"
+            href = " {% static 'welcome.css' %} "
+        />
+        
     </head>
 
     <body>
-        <div class="welcome">
-            <p> Welcome to Ryann's Spotify App </p>
+        <h1> Spotify Stats </h1>
+        
+        <p class="directions"> Login with Spotify to see your top tracks, artists, and more. </p>
+            
+        <div class = "login">
+            <a href="{% url 'login' %}">
+                <button type="button" class="login-button"> Login With Spotify </button>
+            </a>
         </div>
-
-
-        <a href="{% url 'login' %}">
-            <button>Login With Spotify</button>
-          </a>
        
     </body>
