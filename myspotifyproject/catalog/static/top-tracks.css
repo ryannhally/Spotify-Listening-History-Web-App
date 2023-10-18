@@ -1,0 +1,37 @@
+ /* Container with return button */
+.back-button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+    color: black;
+    background: none;
+    border: none;
+    font-weight: bold;
+    margin-left: 5rem;
+    margin-top: 1rem;
+}
+
+/* Container with title */
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Container with track and artist name */
+.track-and-artist{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+    color: black;
+    width: 600px;
+    height: 100px;
+    border-radius: 6px;
+    border-color: rgb(232, 128, 177);
+    border:1px;
+    margin:auto;
+    display: flex;
+
+}

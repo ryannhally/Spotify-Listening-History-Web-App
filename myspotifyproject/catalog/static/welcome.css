@@ -1,0 +1,52 @@
+/* Header with app title */
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 45px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    margin-bottom: 2%;
+   
+    
+}
+
+/* Container with directions text */
+.directions {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    color: black;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 2%;
+
+}
+
+/* Container with button */
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+/* Login button */
+.login-button {
+    color: black;
+    background-color: #16c855;
+    border: none;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 35px;
+    width: 175px;
+    border-radius: 6px;
+
+}
+
+.login-button:hover {
+    color: black;
+    background-color:#119f43;
+    border: none;
+}
