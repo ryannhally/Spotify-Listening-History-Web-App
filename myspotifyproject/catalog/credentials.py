@@ -1,12 +1,12 @@
 # Store credentials here
 
-CLIENT_ID = '1977ff0202a04b0b800a51861ec0cbc8'
+CLIENT_ID = ''
 
-CLIENT_SECRET = '153c5a637ef341e293c21e2e685b2573'
+CLIENT_SECRET = ''
 
-REDIRECT_URI = 'http://localhost:8000/callback'
+REDIRECT_URI = ''
 
-USERNAME = 'rrosele'
+USERNAME = ''
 
-SCOPE = 'user-library-read'
+SCOPE = ''
 
