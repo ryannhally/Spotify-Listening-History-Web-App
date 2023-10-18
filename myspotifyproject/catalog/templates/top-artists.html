@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+
+        <link
+            rel="stylesheet"
+            type = "text/css"
+            href = "{% static 'top-artists.css' %}"
+        />
+    </head>
+
+    <body>
+        <div class = "back-label"> 
+            <a href="{% url 'token' %}">
+                <button type="button" class="back-button"> Ryann's Spotify App</button>
+            </a>
+        </div>
+
+        <div class="title">
+            <p> Your Top Artists </p>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 1. {{ top_artists_names.1 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 2. {{ top_artists_names.2 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 3. {{ top_artists_names.3 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 4. {{ top_artists_names.4 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 5. {{ top_artists_names.5 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 6. {{ top_artists_names.6 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 7. {{ top_artists_names.7 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 8. {{ top_artists_names.8 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 9. {{ top_artists_names.9 }} </text>
+        </div>
+
+        <div class ="artist">
+            <text class ="artist-name"> 10. {{ top_artists_names.10 }} </text>
+        </div>
+
+
+
+
+
+
+    </body>

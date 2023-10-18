@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+
+        <link
+            rel="stylesheet"
+            type = "text/css"
+            href = "{% static 'first-page.css' %}"
+        />
+    </head>
+
+
+    <body>
+            <div class = "back-label"> 
+                <a href="{% url 'welcome' %}">
+                    <button type="button" class="back-button"> Ryann's Spotify App </button>
+                </a>
+            </div>
+
+            </div>
+
+                <div class = "title">
+                    <text> Get Started</text>
+                    
+                </div>
+
+
+                <div class = "button-container"> 
+                    <a href="{% url 'tracks' %}">
+                        <button type="button" class="button"> See your top tracks</button>
+                    </a>
+                </div>
+
+                <div class = "button-container"> 
+                    <a href="{% url 'artists' %}">
+                        <button type="button" class="button"> See your top artists</button>
+                    </a>
+                </div>
+
+                <div class = "button-container"> 
+                    <a href="{% url 'tracks' %}">
+                        <button type="button" class="button"> See audio features</button>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </body>

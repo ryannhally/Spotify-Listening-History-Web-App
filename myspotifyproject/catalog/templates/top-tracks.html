@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+
+        <link
+            rel="stylesheet"
+            type = "text/css"
+            href = "{% static 'top-tracks.css' %}"
+        />
+    </head>
+
+    <body>
+        <div class = "back-label"> 
+            <a href="{% url 'token' %}">
+                <button type="button" class="back-button"> Ryann's Spotify App</button>
+            </a>
+        </div>
+
+        <div class="title">
+            <p> Your Top Tracks</p>
+        </div>
+      
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 1. {{ top_tracks_artists.1 }}&nbsp; - &nbsp; </text> <text class="track-name"> {{ top_tracks_names.1 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 2. {{ top_tracks_artists.2 }}&nbsp; - &nbsp;  </text> <text class="track-name">{{ top_tracks_names.2 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 3. {{ top_tracks_artists.3 }}&nbsp; - &nbsp; </text> <text class="track-name">{{ top_tracks_names.3 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 4. {{ top_tracks_artists.4 }}&nbsp; - &nbsp;  </text> <text class="track-name">{{ top_tracks_names.4 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 5. {{ top_tracks_artists.5 }}&nbsp; - &nbsp; </text> <text class="track-name">{{ top_tracks_names.5 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 6. {{ top_tracks_artists.6 }}&nbsp; - &nbsp; </text> <text class="track-name">{{ top_tracks_names.6 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 7. {{ top_tracks_artists.7 }}&nbsp; - &nbsp; </text> <text class="track-name">{{ top_tracks_names.7 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 8. {{ top_tracks_artists.8 }}&nbsp; - &nbsp; </text> <text class="track-name">{{ top_tracks_names.8 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 9. {{ top_tracks_artists.9 }}&nbsp; - &nbsp;  </text> <text class="track-name">{{ top_tracks_names.9 }} </text>
+        </div>
+        <div class="track-and-artist"> 
+            <text class="artist-name"> 10. {{ top_tracks_artists.10 }}&nbsp; - &nbsp;  </text> <text class="track-name">{{ top_tracks_names.10 }} </text>
+       
+        
+    </body>
