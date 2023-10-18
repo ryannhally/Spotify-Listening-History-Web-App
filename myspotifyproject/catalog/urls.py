@@ -3,8 +3,9 @@ from . import views
 from .views import login_spotify
 
 urlpatterns = [
-    path('catalog/', views.welcome),
+    path('catalog/', views.welcome, name="welcome"),
     path('login/', views.login_spotify, name="login"),
     path('callback/', views.get_token, name="token"),
-    path('tracks/', views.get_top_tracks, name='tracks')
+    path('toptracks/', views.get_more_tracks, name="tracks"),
+    path('topartists/', views.get_more_artists, name="artists")
 ]
