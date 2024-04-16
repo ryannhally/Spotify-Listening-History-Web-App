@@ -169,6 +169,7 @@ def get_25_artists(request):
     return top_25_artists
 
 
+"""
 def get_average_features():
 
     # Get access token
@@ -190,7 +191,7 @@ def get_average_features():
    
     # Turn response into JSON object
     response_json = response.json()
-    
+  """  
     
 
     
