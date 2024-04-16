@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 import spotipy
-import sp
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 import requests
 from urllib.parse import urlencode
 import base64
-import credentials
+from .  import credentials
+import json
+from . import get_stats
 
 
 
@@ -19,16 +20,16 @@ def welcome(request):
 
 
 """ 
-Handles 
+Sends user authorization request
 """
 def login_spotify(request):
 
     # Headers
     auth_headers = {
-    "client_id": credentials.CLIENT_ID,
-    "response_type": 'code',
-    "redirect_uri": credentials.REDIRECT_URI,
-    "scope": credentials.SCOPE
+        "client_id": credentials.CLIENT_ID,
+        "response_type": 'code',
+        "redirect_uri": credentials.REDIRECT_URI,
+        "scope": credentials.SCOPE
     }
 
     # URL
@@ -53,40 +54,78 @@ def get_token(request):
     response = oauth.get_access_token(code)
 
     # Store access token
-    acess_token = response["access_token"]
+    access_token = response["access_token"]
 
     # Store token in session
-    request.session["access_token"] = token
+    request.session["access_token"] = access_token
 
-    # Calls method that renders website 
-    return get_top_tracks(request)
+    # Calls method that renders first page
+    return render(request, "first-page.html")
 
-def get_top_tracks(request):
 
-    token = request.session.get("access_token")
+""" 
+Renders first page where user can choose what data to see
+"""
+def first_page(request):
 
-    user_headers = {
-        "Authorization": "Bearer " + token,
-        "Content-Type": "application/json"
+    # Render first page
+    return render(request, "first-page.html")
+
+
+""" 
+Calls method for gathering user's top tracks and renders page that displays them
+"""
+def get_more_tracks(request):
+    
+    # Call method to get user's top 25 tracks
+    top_25_tracks = get_stats.get_25_tracks(request)
+       
+    # Context
+    context = {
+        "top_tracks_names": top_25_tracks[0],
+        "top_tracks_artists": top_25_tracks[1],
+        "top_tracks_images": top_25_tracks[2]
+        }
+
+
+    # Render page that displays top tracks
+    return render(request, "top-tracks.html", context)
+
+
+""" 
+Calls method for gathering user's top artists and renders page that displays them
+"""
+def get_more_artists(request):
+        
+     # Call method to get user's top 25 artists
+    top_25_artists = get_stats.get_25_artists(request)
+
+       
+    # Context
+    context = {
+        "top_artists_names": top_25_artists[0][0],
+        "top_artists_images": top_25_artists[1][0]
+        }
+
+    # Render page that displays top artists
+    return render(request, "top-artists.html", context)
+
+
+""" 
+Calls method for gathering averages of audio features of user's top songs and renders page that displays them 
+"""
+def get_audio_features(request):
+    
+    # Call method to get audio analysis on user's top 25 tracks
+    avg_features = get_stats.get_average_features(request)
+
+    # Context
+    context = {
+        "avg_acousticness": avg_acousticness,
+        "avg_danceability": avg_danceability,
+        "avg_energy": avg_energy,
+        "avg_tempo": avg_tempo
+        
     }
 
-    user_params = {
-        "limit": 10
-    }
-
-    user_tracks_response = requests.get("https://api.spotify.com/v1/me/tracks", params=user_params, headers=user_headers)
-   
-    print(user_tracks_response.json())
-
-
-    return render(request, "fake.html")
-    """ user_headers = {
-    "Authorization": "Bearer " + token,
-    "Content-Type": "application/json"  
-    }
-
-    user_params = {
-    "limit": 50
-     }
-
-    user_tracks_response = requests.get("https://api.spotify.com/v1/me/tracks", params=user_params, headers=user_headers) """
+    return render(request, "audio-features.html", context )
