@@ -1,0 +1,196 @@
+import requests
+import json
+
+class MyException(Exception):
+    pass
+
+
+""" 
+Gets user's most listened to song, returns dictionary with track name, artist name, and URL of album image
+"""
+def get_top_track(request):
+
+    # Get access token
+    token = request.session.get("access_token")
+
+    # Headers
+    headers = {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+    }
+
+    # Parameters
+    params = {
+        "limit": 1,
+        #"time": "medium_term"
+    }
+
+    # Request
+    response = requests.get("https://api.spotify.com/v1/me/top/tracks", params=params, headers=headers)
+
+    # Turn response into JSON object
+    response_json = response.json()
+   
+
+    # Save track name, artist name, and  URL of album image into dictionary
+    top_track = {
+        'track': response_json["items"][0]["name"],
+        'artist': response_json["items"][0]["artists"][0]["name"],
+        'image':response_json["items"][0]["album"]["images"][0]["url"]
+    }
+
+    # Return dictionary with track name and artist 
+    return top_track 
+
+
+""" 
+Gets user's most listened to artist, returns dictionary with artist name and URL of artist image
+"""
+def get_top_artist(request):
+
+    # Get access token
+    token = request.session.get("access_token")
+
+    # Headers
+    headers = {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+    }
+
+    # Parameters
+    params = {
+        "limit": 1,
+        #"time": "medium_term"
+    }
+
+    # Request
+    response = requests.get("https://api.spotify.com/v1/me/top/artists", params=params, headers=headers)
+
+    # Turn response into JSON object
+    response_json = response.json()
+
+
+    # Save artist name into dictionary
+    top_artist = {
+        'artist': response_json["items"][0]["name"],
+        'image': response_json["items"][0]["images"]
+
+    }
+
+    # Return dictionary with artist name and URL of image
+    return top_artist
+
+
+"""
+Gets user's 25 most listened to tracks, returns lists of track names, artist names, and URLs of album images
+"""
+def get_25_tracks(request):
+
+    # Get access token
+    token = request.session.get("access_token")
+
+    # Headers
+    user_headers = {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+    }
+
+    # Parameters
+    user_params = {
+        "limit": 25
+    }
+
+    # Request
+    response = requests.get("https://api.spotify.com/v1/me/top/tracks", params=user_params, headers=user_headers)
+   
+    # Turn response into JSON object
+    response_json = response.json()
+
+    # Loop through "items" and add track names, artist names, and URL of album image to lists
+    top_tracks_names = list()
+    top_tracks_artists = list()
+    top_tracks_images = list()
+
+    count = 0;
+    for track in response_json["items"]:
+        top_tracks_names.append(response_json["items"][int(count)]["name"])
+        top_tracks_artists.append(response_json["items"][int(count)]["artists"][0]["name"])
+        top_tracks_images.append(response_json["items"][int(count)]["album"]["images"][0]['url'])
+        count = count +1;
+    
+    
+    if count < 24:
+        raise MyException('Not enough streaming data to display top tracks.')
+    
+    # List with lists of track names, artist names, and track images
+    top_25_tracks = [top_tracks_names, top_tracks_artists, top_tracks_images]
+       
+    return top_25_tracks
+
+
+"""
+Gets user's 25 most listened to artists, returns lists of artist names and URLs of album images
+"""
+def get_25_artists(request):
+
+    # Get access token
+    token = request.session.get("access_token")
+
+    # Headers
+    user_headers = {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+    }
+
+    # Parameters
+    user_params = {
+        "limit": 25
+    }
+
+    # Request
+    response = requests.get("https://api.spotify.com/v1/me/top/artists", params=user_params, headers=user_headers)
+   
+    # Turn response into JSON object
+    response_json = response.json()
+
+    # Loop through "items" and add artist names and images to list
+    top_artists_names = list()
+    top_artists_images = list()
+
+    count = 0;
+    for track in response_json["items"]:
+        top_artists_names.append(response_json["items"][int(count)]["name"])
+        top_artists_images.append(response_json["items"][int(count)]["images"])
+        count = count +1;
+
+    top_25_artists = [[top_artists_names], [top_artists_images]]
+
+
+    return top_25_artists
+
+
+def get_average_features():
+
+    # Get access token
+    token = request.session.get("access_token")
+
+    # Headers
+    user_headers = {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+    }
+    
+    # Parameters
+    user_params = {
+        "limit": 25
+    }
+
+    # Request
+    response = requests.get("https://api.spotify.com/v1/me/top/artists", params=user_params, headers=user_headers)
+   
+    # Turn response into JSON object
+    response_json = response.json()
+    
+    
+
+    
