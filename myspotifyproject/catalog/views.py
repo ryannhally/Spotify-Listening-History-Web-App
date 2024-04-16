@@ -110,6 +110,7 @@ def get_more_artists(request):
     # Render page that displays top artists
     return render(request, "top-artists.html", context)
 
+"""
 
 """ 
 Calls method for gathering averages of audio features of user's top songs and renders page that displays them 
@@ -129,3 +130,5 @@ def get_audio_features(request):
     }
 
     return render(request, "audio-features.html", context )
+    
+"""
