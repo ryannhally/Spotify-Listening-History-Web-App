@@ -1,4 +1,4 @@
-# Insights for Spotify Listening History
+# Spotify Streaming History Web App
 
 ## Project Description
 
